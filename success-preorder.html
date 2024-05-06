@@ -31,6 +31,7 @@
             opacity: 0;  
             transition: opacity 1s ease-in-out, background-color 1s ease-in-out;
             background-color: #1d1e22;
+            overflow: hidden;
         }
 
         body.loaded {
@@ -255,19 +256,46 @@ select:focus+label {
 
 
 </head>
+<style>
+    #animated-gif {
+      margin: 0;
+      overflow: hidden;
+      background-color: #121212;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #text {
+    opacity: 1;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+  </style>
 
 <body translate="no">
     <div class="container">
         <header>Congratulations
-            <span>You are on the waiting queue</span>
+            <span>Your order has been registered</span>
         </header>
-        <img src="stream/validatecolor.gif" style="margin: 0; overflow: hidden; background-color: #121212; max-width: 100%; height: auto; display: block;" 
-        alt="Animated GIF">
-    
-
-            <!-- Display Form Data Output -->
-            <div id="formOutput"></div>
-
+        <img id="animated-gif" src="stream/validatecolor.gif" style="margin: 0; overflow: hidden; background-color: #121212; max-width: 100%; height: auto; display: block;" alt="Animated GIF">
+        <span>You will be contacted very soon on telegram, please take note of the payment methods listed below, for a faster transaction prepare your money according to the possible additionnal fees,
+            Thank you for ordering and we hope everything will be ok, 
+        </span><br><br><span>You can explore our happy clients album, join our comunity discord server, follow us on tiktok, join the main telegram channel, you can also directly contact a staff member for emergency case</span>
+        <br>
+        <img src="stream/payment4K.png" style="max-width: 100%; height: auto; display: block; margin: 0 auto; ">
+        <br>
+        <script>
+            // Function to fade out the image over 5 seconds and then remove it
+            setTimeout(function() {
+              var image = document.getElementById('animated-gif');
+              image.style.opacity = '0';
+              setTimeout(function() {
+                image.parentNode.removeChild(image);
+              }, 1000); // Wait for the fade out transition to complete before removing the image
+            }, 4000); // 5000 milliseconds = 5 seconds
+          </script>
     <script>
         document.getElementById('scamForm').addEventListener('submit', function (event) {
             event.preventDefault();
