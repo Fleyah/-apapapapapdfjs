@@ -30,9 +30,12 @@
             opacity: 0;  
             transition: opacity 1s ease-in-out, background-color 1s ease-in-out;
             background-color: #1d1e22;
-            overflow: hidden;
+            
             
         }
+        ::-webkit-scrollbar {
+    display: none;
+}
 
         body.loaded {
             opacity: 1;
@@ -176,6 +179,7 @@ option {
             cursor: pointer;
             color: #ccc;
         }
+        
 
 select:focus {
     outline: none !important;
@@ -232,7 +236,7 @@ select:focus+label {
         }
 
         .big{
-            height:700px
+            height:300px
         }
 
     </style>
@@ -307,7 +311,7 @@ myQuantitySelector.addEventListener('change', () => {
          
                         
                       </div>
-                      <h4 class="smalld">For bigger quantities please directly contact a staff</h4>
+                      <h4 class="smalld">For larger quantities, please contact our staff directly.</h4>
                 </div>
                 
    <!--             <div class="row">
