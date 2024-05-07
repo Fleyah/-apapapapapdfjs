@@ -133,81 +133,10 @@
  
 
     </style>
-    <style>
-
-  .menu-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    z-index: 1000; /* Ensure the menu toggle appears above other elements */
-  }
-
-  .bar {
-  width: 100%;
-  height: 4px;
-  background-color: #000000;
-  border: 1px solid rgb(121, 0, 0); /* Red border with 5px width */
-  margin: 6px auto;
-  transition: 0.3s;
-}
-
-  .fullscreen-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  opacity: 0; /* Initially invisible */
-  overflow: hidden;
-  z-index: 999;
-  transition: height 0.5s ease, opacity 0.5s ease; /* Transition height and opacity for smooth animation */
-}
-
-.fullscreen-menu.open {
-  height: 100vh; /* Expand to full height of the viewport when open */
-  opacity: 1; /* Make it fully visible */
-}
-
-
-  .fullscreen-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .fullscreen-menu ul li {
-    margin-bottom: 20px;
-  }
-
-  .fullscreen-menu ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 24px;
-    transition: 0.3s;
-  }
-
-  .fullscreen-menu ul li a:hover {
-    color: #aaa;
-  }
-</style>
-
-      
-    
 
     <script>
         window.console = window.console || function (t) {};
     </script>
-
-
 <script>
     function scrollToBottom() {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -222,30 +151,9 @@ window.addEventListener('scroll', function() {
     </script>
 
 
-
 </head>
 
-<body>
-     <!-- Your HTML content -->
-  <div class="menu-toggle">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-
-  <div class="fullscreen-menu">
-    <ul>
-      <li style="background-color: #4b0000; border-radius: 10px; opacity: 80%;"><a href="text.html">Home</a></li>
-      <li><a href="text.html">Tracking App</a></li>
-      <li><a href="#">Reviews</a></li>
-      <li><a href="telegram.com">Telegram</a></li>
-      <li><a href="discord.com">Discord</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="tos.html">TOS</a></li>
-    </ul>
-  </div>
-  
-
+<body translate="no">
     <div class="compare">
         <section class="before">
             <div style="display: flex; justify-content: center;margin-top: 5vh; align-items: center; height: 20vh;">
@@ -285,36 +193,11 @@ window.addEventListener('scroll', function() {
             <h2 class="pretty">Anonymity Enhancement Techniques</h2>
             <p class="pretty">
                 
-                
 To maximize your discretion, opt for gloves that match your skin color or apply a thin layer of superglue on your fingertips to prevent leaving identifiable prints. Additionally, wear a baseball cap and sunglasses to obscure your facial features from surveillance cameras, and choose nondescript clothing to blend into your surroundings. These measures, coupled with the use of disposable phones or encrypted communication channels, will minimize the risk of detection and help you maintain your anonymity while carrying out covert activities.</p>
-
-<hr>
-
-
-
-
-<div style="text-align: center;">
-    <img src="stream/Raven-Giftcard.png" style="max-width: 100%; height: auto; display: block; margin: 0 auto; background-color: #121212;">
-    <h2 class="botbot" style="margin-top: 20px;">Introducing the Basic Card:</h2>
-    <p class="botbot1">Balances range from 1500€/$ to 3000€/$</p>
-    <p class="botbot1">Pre-order now for delivery within 3 days of creation. You can pre-order now and pay tomorrow. Upon receipt of the package, you'll find a PIN code printed on a sticker for card use.</p>
-    <a href='preorderform.html' style="display: inline-block; margin-top: 20px; text-decoration: none;">
-        <br>
-        <img src="stream/payment4K.png" style="max-width: 100%; height: auto; display: block; margin: 0 auto; background-color: #121212;">
-        <br>
-        <button class="fmy-button">Pre-order for only 59€ today</button>
-    </a>
-</div>
-
+<a href='preorderform.html'><button class="fmy-button">Pre-order for only 59€ today</button></a>
 <br>
         </section>
         <style>
-            .botbot{
-                font-size:large;
-            }
-            .botbot1{
-                font-size: medium;
-            }
             .my-button {
               background-color: rgb(0, 0, 0);
               border: 2px solid #ff0505; /* Green */
@@ -339,34 +222,14 @@ To maximize your discretion, opt for gloves that match your skin color or apply 
               cursor: pointer;
             }
           </style>
-            
+          
           
         
 
     </div>
-              
 
-    <script> //toggle
 
-        document.addEventListener('DOMContentLoaded', function() {
-          const menuToggle = document.querySelector('.menu-toggle');
-          const fullScreenMenu = document.querySelector('.fullscreen-menu');
-        
-          // Menu toggle click event
-          menuToggle.addEventListener('click', function() {
-            fullScreenMenu.classList.toggle('open');
-          });
-        
-          // Full-screen menu click event to close the menu when clicking outside of it
-          fullScreenMenu.addEventListener('click', function(event) {
-            if (!event.target.closest('.fullscreen-menu ul')) {
-              fullScreenMenu.classList.remove('open');
-            }
-          });
-        });
-        
-        
-          </script>
+
 </body>
 
 </html>

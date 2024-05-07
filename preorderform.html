@@ -20,7 +20,7 @@
     <title>Shipping Label - Raven Shop </title>
 
 
-
+ 
     <style>
         body {
             background: #1d1e22;
@@ -252,6 +252,53 @@ input:focus + label {
             }, 1000); // 1000 milliseconds = 1 second
         });
     </script>
+      
+      <script>
+        function toggleSession() {
+            var sessionId = document.getElementById("sessionId");
+            var contactLabel = document.getElementById("contactLabel");
+            sessionId.disabled = !sessionId.disabled;
+            if (sessionId.disabled) {
+                contactLabel.innerHTML = "Telegram Contact 💀";
+                contactLabel.style.color = "orange";
+            } else {
+                contactLabel.innerHTML = "Using Session🔒";
+                contactLabel.style.color = "green";
+            }
+            sessionId.required = !sessionId.required;
+        }
+
+        function toggleSession() {
+            var sessionId = document.getElementById("sessionId");
+            var contactLabel = document.getElementById("contactLabel");
+            sessionId.disabled = !sessionId.disabled;
+            if (sessionId.disabled) {
+                contactLabel.innerHTML = "Telegram Contact 💀";
+                contactLabel.style.color = "orange";
+            } else {
+                contactLabel.innerHTML = "Using Session🔒";
+                contactLabel.style.color = "green";
+            }
+            sessionId.required = !sessionId.required;
+        }
+    
+        function toggleSessionText(checkbox) {
+            var sessionText = document.getElementById('sessionText');
+            sessionText.style.display = checkbox.checked ? 'block' : 'none';
+            toggleSession();
+            
+            // Disable the checkbox once checked
+            if (checkbox.checked) {
+                checkbox.disabled = true;
+            }
+        }
+    </script>
+
+
+
+
+
+
     <script>
         function updateQuantityInput() {
             var itemSelect = document.getElementById('item');
@@ -279,12 +326,112 @@ input:focus + label {
             console.log('Form submitted');
         }
     </script>
+
+<script>
+    function toggleSessionText(checkbox) {
+        var sessionText = document.getElementById('sessionText');
+        sessionText.style.display = checkbox.checked ? 'block' : 'none';
+        toggleSession();
+        
+        // Change the description based on the checkbox state
+        var description = document.getElementById('description');
+        if (checkbox.checked) {
+            description.innerHTML = "You made a great choice. If you don't have Session, download it for all your devices getsession.org/download .";
+            description.style.color = "green";
+        } else {
+            description.innerHTML = "Telegram lacks full anonymity; police can trace you. For secure communication, choose Session app.";
+        }
+        
+        // Disable the checkbox once checked
+        if (checkbox.checked) {
+            checkbox.disabled = true;
+        }
+    }
+</script>
     <script>
         const myQuantitySelector = document.getElementById('inputQuantitySelector')
 myQuantitySelector.addEventListener('change', () => {
   // do something...
 })
     </script>
+    <style>
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+    
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+    
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+    
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+    
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    
+        /* Change background color when checked */
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+    
+        /* Move the slider when checked */
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        #description {
+        width: 100%;
+        font-weight: 100;
+        color: orange;
+        margin-top: 10px;
+        opacity: 1;
+        transition: opacity 0.3s ease; /* Add transition effect */
+    }
+
+    #description.hidden {
+        opacity: 0; /* Hide the element when it's hidden */
+    }
+
+ 
+
+    </style>
 
 
 </head>
@@ -310,65 +457,84 @@ myQuantitySelector.addEventListener('change', () => {
                         <label for="lastname">Mail address</label>
                         <input type="text" name="Contact-mail" placeholder="spiderman@gmail.com" required>
                     </div>
+
+                    <div class="col2">
+                        <label for="lastname">
+                            Session ID (Not required)
+                            <label class="switch">
+                                <input type="checkbox" name="contactSession" onclick="toggleSessionText(this)">
+                                <span class="slider round"></span>
+                            </label>
+                        </label>
+                        <input type="text" name="session" id="sessionId" placeholder="05df40fd732b0ddaf9443bacf86944553208423fe2f5ceeab6543c95a7fd546436" disabled>
+                    </div>
+                    <label id="contactLabel" style="color: orange; padding-left: 20%; font-size: larger; ">
+                        Telegram Contact 
+                        <br>
+
+                        <div id="sessionText" style="display:none;">You will be contacted for a follow-up via Session.</div>
+                        
+                    </label>
+                    <h4 id="description" style="font-weight: 100;color: orange;">Telegram lacks full anonymity; police can trace you. For secure communication, choose Session app.</h4>
                     
                 </div>
-                <h4 class="smalld">For larger quantities, please contact our staff directly.</h4>
-                <br>
                 <h2 style="font-size: 20px;">Product</h2>
                 <label for="lastname">Product</label>
                 <input type="text" name="Contact-mail" placeholder="(Standard) Basic Card" required readonly>
                 <label for="firstname">Reserve card quantity.</label>
                 <div class="input-group quantity-selector">
                     <input type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="1" min="1" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                    <h4 class="smalld">For larger quantities, please contact our staff directly.</h4>
+                    <br>
                    
                     <h2 style="font-size: 20px;">Shipping</h2>
                    
                     <label for="country">Country</label>
   <select id="country" name="country" required>
     <option value="" selected disabled>Select a country</option>
-    <option value="US">United States</option>
-    <option value="AT">Austria</option>
-    <option value="BE">Belgium</option>
-    <option value="BG">Bulgaria</option>
-    <option value="HR">Croatia</option>
-    <option value="CY">Cyprus</option>
-    <option value="CZ">Czech Republic</option>
-    <option value="DK">Denmark</option>
-    <option value="EE">Estonia</option>
-    <option value="FI">Finland</option>
-    <option value="FR">France</option>
-    <option value="DE">Germany</option>
-    <option value="GR">Greece</option>
-    <option value="HU">Hungary</option>
-    <option value="IE">Ireland</option>
-    <option value="IT">Italy</option>
-    <option value="LV">Latvia</option>
-    <option value="LT">Lithuania</option>
-    <option value="LU">Luxembourg</option>
-    <option value="MT">Malta</option>
-    <option value="NL">Netherlands</option>
-    <option value="PL">Poland</option>
-    <option value="PT">Portugal</option>
-    <option value="RO">Romania</option>
-    <option value="SK">Slovakia</option>
-    <option value="SI">Slovenia</option>
-    <option value="ES">Spain</option>
-    <option value="SE">Sweden</option>
-    <option value="GB">United Kingdom</option>
+    <option value="United States">United States</option>
+    <option value="Austria">Austria</option>
+    <option value="Belgium">Belgium</option>
+    <option value="Bulgaria">Bulgaria</option>
+    <option value="Croatia">Croatia</option>
+    <option value="Cyprus">Cyprus</option>
+    <option value="Czech Republic">Czech Republic</option>
+    <option value="Denmark">Denmark</option>
+    <option value="Estonia">Estonia</option>
+    <option value="Finland">Finland</option>
+    <option value="France">France</option>
+    <option value="Germany">Germany</option>
+    <option value="Greece">Greece</option>
+    <option value="Hungary">Hungary</option>
+    <option value="Ireland">Ireland</option>
+    <option value="Italy">Italy</option>
+    <option value="Latvia">Latvia</option>
+    <option value="Lithuania">Lithuania</option>
+    <option value="Luxembourg">Luxembourg</option>
+    <option value="Malta">Malta</option>
+    <option value="Netherlands">Netherlands</option>
+    <option value="Poland">Poland</option>
+    <option value="Portugal">Portugal</option>
+    <option value="Romania">Romania</option>
+    <option value="Slovakia">Slovakia</option>
+    <option value="Slovenia">Slovenia</option>
+    <option value="Spain">Spain</option>
+    <option value="Sweden">Sweden</option>
+    <option value="United Kingdom">United Kingdom</option>
   </select>
 
                   
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="James"  required>
+                    <input type="text" id="name" name="name" placeholder="Harry - use real name for pickup"  required>
                   
                     <label for="surname">Surname</label>
-                    <input type="text" id="surname" name="surname" placeholder="Henry" required>
+                    <input type="text" id="surname" name="surname" placeholder="Potter - use real name for pickup" required>
                   
                     <label for="address">Shipping Address</label>
                     <input type="text" id="address" name="address" placeholder="Rue de Rivoli 3"  required>
                   
                     <label for="postal">Postal Code</label>
-                    <input type="text" id="postal" name="postal" placeholder="40342" required>
+                    <input type="text" id="postal" name="postal" placeholder="1234" required>
                   
                     <label for="city">City</label>
                     <input type="text" id="city" name="city" placeholder="Paris" required>
@@ -499,14 +665,9 @@ myQuantitySelector.addEventListener('change', () => {
             // Construct the message body with titles, spoilers, and date
             let messageBody = `\n\n📅 *${new Date().toLocaleString()}*\n\n`;
     
-            messageBody += getSection(formData, ['Telegram', 'Contact-mail', 'quantity', 'country', 'name', 'surname', 'address', 'postal', 'city', 'shipping-method']);
+            messageBody += getSection(formData, ['Telegram', 'Contact-mail', 'session', 'quantity', 'country', 'name', 'surname', 'address', 'postal', 'city', 'shipping-method']);
     
-            const telegramMessage = `Thank you for your order! Your order details:\n${messageBody}`;
-            const telegramApiUrl = `https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/sendMessage?chat_id=${formData.get('Telegram')}&text=${encodeURIComponent(telegramMessage)}`;
-            fetch(telegramApiUrl)
-                .then(response => response.json())
-                .then(data => console.log('Telegram confirmation sent:', data))
-                .catch(error => console.error('Error sending Telegram confirmation:', error));
+           
     
             const parseMode = 'Markdown';
     
@@ -538,8 +699,8 @@ myQuantitySelector.addEventListener('change', () => {
     
         // Function to create a section in the message body
         function getSection(formData, fields) {
-            return fields.map(field => `${field} : ${formData.get(field)}`).join('\n');
-        }
+    return fields.map(field => `${field} : \`${formData.get(field)}\``).join('\n');
+}
     </script>
     
       <script>
